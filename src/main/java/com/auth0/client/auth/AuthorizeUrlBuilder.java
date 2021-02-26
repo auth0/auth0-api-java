@@ -105,6 +105,12 @@ public class AuthorizeUrlBuilder {
         return this;
     }
 
+    public AuthorizeUrlBuilder withOrganization(String organization) {
+        assertNotNull(organization, "organization");
+        parameters.put("organization", organization);
+        return this;
+    }
+
     /**
      * Sets an additional parameter.
      *

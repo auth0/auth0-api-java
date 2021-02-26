@@ -192,4 +192,12 @@ public class AuthorizeUrlBuilderTest {
         AuthorizeUrlBuilder.newInstance(DOMAIN, CLIENT_ID, REDIRECT_URI)
                 .withParameter("name", null);
     }
+
+    @Test
+    public void shouldAddOrganizationParameter() {
+        String authUrl = AuthorizeUrlBuilder.newInstance(DOMAIN, CLIENT_ID, REDIRECT_URI)
+            .withOrganization("org_abc")
+            .build();
+        System.out.println(authUrl);
+    }
 }
