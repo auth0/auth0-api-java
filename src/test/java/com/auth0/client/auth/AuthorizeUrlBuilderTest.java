@@ -198,6 +198,16 @@ public class AuthorizeUrlBuilderTest {
         String authUrl = AuthorizeUrlBuilder.newInstance(DOMAIN, CLIENT_ID, REDIRECT_URI)
             .withOrganization("org_abc")
             .build();
-        System.out.println(authUrl);
+        assertThat(authUrl, hasQueryParameter("organization", "org_abc"));
+    }
+
+    @Test
+    public void shouldThrowWhenOrganizationIsNull() {
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("'organization' cannot be null!");
+        String authUrl = AuthorizeUrlBuilder.newInstance(DOMAIN, CLIENT_ID, REDIRECT_URI)
+            .withOrganization(null)
+            .build();
+        assertThat(authUrl, hasQueryParameter("organization", "org_abc"));
     }
 }
