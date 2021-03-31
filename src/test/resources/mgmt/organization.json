@@ -1,0 +1,15 @@
+{
+  "id": "org_VSZmSnzd0m9ITBZ7",
+  "name": "org-1",
+  "display_name": "org 1",
+  "branding": {
+    "logo_uri": "https://some-url.com/",
+    "colors": {
+      "primary": "#FF0000",
+      "page_background": "#FF0000"
+    }
+  },
+  "metadata": {
+    "key1": "val1"
+  }
+}

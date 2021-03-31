@@ -1,0 +1,12 @@
+{
+  "roles": [
+    {
+      "id": "rol_YMmM7zN6kqtus91",
+      "name": "test role",
+      "description": "role for testing"
+    }
+  ],
+  "start": 0,
+  "limit": 50,
+  "total": 1
+}

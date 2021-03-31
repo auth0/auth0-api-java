@@ -1,0 +1,23 @@
+{
+  "enabled_connections": [
+    {
+      "connection_id": "con_At4BWXhV3lKv82jd",
+      "assign_membership_on_login": false,
+      "connection": {
+        "name": "google-oauth2",
+        "strategy": "google-oauth2"
+      }
+    },
+    {
+      "connection_id": "con_kai93HmEDCs8ai3d",
+      "assign_membership_on_login": true,
+      "connection": {
+        "name": "Username-Password-Authentication",
+        "strategy": "auth0"
+      }
+    }
+  ],
+  "start": 0,
+  "limit": 20,
+  "total": 2
+}

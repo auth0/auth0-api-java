@@ -1,0 +1,25 @@
+{
+  "members": [
+    {
+      "user_id": "auth0|605a1f57cbeb2c0070fdf123",
+      "email": "dave@domain.com",
+      "picture": "https://domain.com/img.png",
+      "name": "dave"
+    },
+    {
+      "user_id": "auth0|605a0fc1bef67f006851a123",
+      "email": "eric@domain.com",
+      "picture": "https://domain.com/img.png",
+      "name": "eric"
+    },
+    {
+      "user_id": "auth0|5f5103d20e634f006d25a123",
+      "email": "john@domain.com",
+      "picture": "https://domain.com/img.png",
+      "name": "john"
+    }
+  ],
+  "start": 0,
+  "limit": 20,
+  "total": 3
+}

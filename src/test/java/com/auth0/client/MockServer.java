@@ -94,6 +94,16 @@ public class MockServer {
     public static final String MULTIPART_SAMPLE = "src/test/resources/mgmt/multipart_sample.json";
     public static final String PASSWORDLESS_EMAIL_RESPONSE = "src/test/resources/auth/passwordless_email.json";
     public static final String PASSWORDLESS_SMS_RESPONSE = "src/test/resources/auth/passwordless_sms.json";
+    public static final String ORGANIZATION = "src/test/resources/mgmt/organization.json";
+    public static final String ORGANIZATIONS_LIST = "src/test/resources/mgmt/organizations_list.json";
+    public static final String ORGANIZATIONS_PAGED_LIST = "src/test/resources/mgmt/organizations_paged_list.json";
+    public static final String ORGANIZATION_MEMBERS_LIST = "src/test/resources/mgmt/organization_members_list.json";
+    public static final String ORGANIZATION_MEMBERS_PAGED_LIST = "src/test/resources/mgmt/organization_members_paged_list.json";
+    public static final String ORGANIZATION_CONNECTIONS_LIST = "src/test/resources/mgmt/organization_connections_list.json";
+    public static final String ORGANIZATION_CONNECTIONS_PAGED_LIST = "src/test/resources/mgmt/organization_connections_paged_list.json";
+    public static final String ORGANIZATION_CONNECTION = "src/test/resources/mgmt/organization_connection.json";
+    public static final String ORGANIZATION_MEMBER_ROLES_LIST = "src/test/resources/mgmt/organization_member_roles_list.json";
+    public static final String ORGANIZATION_MEMBER_ROLES_PAGED_LIST = "src/test/resources/mgmt/organization_member_roles_paged_list.json";
 
     private final MockWebServer server;
 

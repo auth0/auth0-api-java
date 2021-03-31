@@ -348,4 +348,8 @@ public class ManagementAPI {
     public RolesEntity roles() {
         return new RolesEntity(client, baseUrl, apiToken);
     }
+
+    public OrganizationsEntity organizations() {
+        return new OrganizationsEntity(client, baseUrl, apiToken);
+    }
 }
