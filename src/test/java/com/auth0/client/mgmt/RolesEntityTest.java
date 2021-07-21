@@ -1,22 +1,5 @@
 package com.auth0.client.mgmt;
 
-import static com.auth0.client.MockServer.MGMT_ROLE;
-import static com.auth0.client.MockServer.MGMT_ROLES_LIST;
-import static com.auth0.client.MockServer.MGMT_ROLES_PAGED_LIST;
-import static com.auth0.client.MockServer.MGMT_ROLE_PERMISSIONS_PAGED_LIST;
-import static com.auth0.client.MockServer.MGMT_ROLE_USERS_PAGED_LIST;
-import static com.auth0.client.MockServer.bodyFromRequest;
-import static com.auth0.client.RecordedRequestMatcher.hasHeader;
-import static com.auth0.client.RecordedRequestMatcher.hasMethodAndPath;
-import static com.auth0.client.RecordedRequestMatcher.hasQueryParameter;
-import static org.hamcrest.Matchers.hasEntry;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import com.auth0.client.mgmt.filter.PageFilter;
 import com.auth0.client.mgmt.filter.RolesFilter;
 import com.auth0.json.mgmt.Permission;
@@ -25,12 +8,18 @@ import com.auth0.json.mgmt.Role;
 import com.auth0.json.mgmt.RolesPage;
 import com.auth0.json.mgmt.users.UsersPage;
 import com.auth0.net.Request;
+import okhttp3.mockwebserver.RecordedRequest;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import okhttp3.mockwebserver.RecordedRequest;
-import org.junit.Test;
+
+import static com.auth0.client.MockServer.*;
+import static com.auth0.client.RecordedRequestMatcher.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 public class RolesEntityTest extends BaseMgmtEntityTest {
 
@@ -269,6 +258,31 @@ public class RolesEntityTest extends BaseMgmtEntityTest {
     assertThat(response.getTotal(), is(14));
     assertThat(response.getLimit(), is(50));
   }
+
+    @Test
+    public void shouldListUsersWithCheckpointPaging() throws Exception {
+        PageFilter filter = new PageFilter().withTake(2).withFrom("from-id");
+        Request<UsersPage> request = api.roles().listUsers("1", filter);
+        assertThat(request, is(notNullValue()));
+
+        server.jsonResponse(MGMT_ROLE_USERS_CHECKPOINT_PAGED_LIST, 200);
+        UsersPage response = request.execute();
+        RecordedRequest recordedRequest = server.takeRequest();
+
+        assertThat(recordedRequest, hasMethodAndPath("GET", "/api/v2/roles/1/users"));
+        assertThat(recordedRequest, hasHeader("Content-Type", "application/json"));
+        assertThat(recordedRequest, hasHeader("Authorization", "Bearer apiToken"));
+        assertThat(recordedRequest, hasQueryParameter("take", "2"));
+        assertThat(recordedRequest, hasQueryParameter("from", "from-id"));
+
+        assertThat(response, is(notNullValue()));
+        assertThat(response.getItems(), hasSize(2));
+        assertThat(response.getNext(), is("MjAyMS0wMy0yOSAxNjo1MDo09s44NDYxODcrMDAsb3JnX2Y0VXZUbG1iSWd2005zTGw"));
+        assertThat(response.getStart(), is(nullValue()));
+        assertThat(response.getLength(), is(nullValue()));
+        assertThat(response.getTotal(), is(nullValue()));
+        assertThat(response.getLimit(), is(nullValue()));
+    }
 
   @Test
   public void shouldThrowOnAssignUsersWithNullId() {

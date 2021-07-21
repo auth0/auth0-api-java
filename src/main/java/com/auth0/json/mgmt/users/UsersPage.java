@@ -24,4 +24,7 @@ public class UsersPage extends Page<User> {
         super(start, length, total, limit, items);
     }
 
+    public UsersPage(Integer start, Integer length, Integer total, Integer limit, String next, List<User> items) {
+        super(start, length, total, limit, next, items);
+    }
 }

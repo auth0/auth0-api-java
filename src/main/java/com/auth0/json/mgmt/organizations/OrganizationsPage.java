@@ -23,4 +23,8 @@ public class OrganizationsPage extends Page<Organization> {
     public OrganizationsPage(Integer start, Integer length, Integer total, Integer limit, List<Organization> items) {
         super(start, length, total, limit, items);
     }
+
+    public OrganizationsPage(Integer start, Integer length, Integer total, Integer limit, String next, List<Organization> items) {
+        super(start, length, total, limit, next, items);
+    }
 }

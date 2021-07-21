@@ -1,12 +1,12 @@
 package com.auth0.client.mgmt.filter;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PageFilterTest {
 
@@ -36,4 +36,12 @@ public class PageFilterTest {
         assertThat(filter.getAsMap(), Matchers.hasEntry("include_totals", true));
     }
 
+    @Test
+    public void shouldIncludeCheckpointParams() {
+        PageFilter instance = filter.withFrom("abc123").withTake(2);
+
+        assertThat(filter.getAsMap(), is(notNullValue()));
+        assertThat(filter.getAsMap(), Matchers.hasEntry("from", "abc123"));
+        assertThat(filter.getAsMap(), Matchers.hasEntry("take", 2));
+    }
 }

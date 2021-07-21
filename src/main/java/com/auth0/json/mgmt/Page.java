@@ -24,6 +24,8 @@ public abstract class Page<T> {
     private Integer total;
     @JsonProperty("limit")
     private Integer limit;
+    @JsonProperty("next")
+    private String next;
     private final List<T> items;
 
     public Page(List<T> items) {
@@ -31,10 +33,15 @@ public abstract class Page<T> {
     }
 
     public Page(Integer start, Integer length, Integer total, Integer limit, List<T> items) {
+        this(start, length, total, limit, null, items);
+    }
+
+    public Page(Integer start, Integer length, Integer total, Integer limit, String next, List<T> items) {
         this.start = start;
         this.length = length;
         this.total = total;
         this.limit = limit;
+        this.next = next;
         this.items = items;
     }
 
@@ -76,6 +83,15 @@ public abstract class Page<T> {
     @JsonProperty("limit")
     public Integer getLimit() {
         return limit;
+    }
+
+    /**
+     * Getter for the next value, if using checkpoint pagination, which can be used to fetch the next page of results.
+     * @return the next value.
+     */
+    @JsonProperty("next")
+    public String getNext() {
+        return next;
     }
 
     /**

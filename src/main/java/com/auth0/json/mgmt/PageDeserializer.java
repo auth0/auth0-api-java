@@ -42,20 +42,42 @@ public abstract class PageDeserializer<T, U> extends StdDeserializer<T> {
         Integer length = getIntegerValue(node.get("length"));
         Integer total = getIntegerValue(node.get("total"));
         Integer limit = getIntegerValue(node.get("limit"));
+
+        // "next" field is sent when using checkpoint pagination on APIs that support it. It will be null when
+        // end of pages reached, or if offset paging is used
+        String next = getStringValue(node.get("next"));
         ArrayNode array = (ArrayNode) node.get(itemsPropertyName);
 
-        return createPage(start, length, total, limit, getArrayElements(array));
+        return createPage(start, length, total, limit, next, getArrayElements(array));
     }
 
     protected abstract T createPage(List<U> items);
 
     protected abstract T createPage(Integer start, Integer length, Integer total, Integer limit, List<U> items);
 
+    /**
+     * Creates a new page result.<br/>
+     * <strong>By default, this method delegates to {@linkplain PageDeserializer#createPage(Integer, Integer, Integer, Integer, List)},
+     * to preserve backwards-compatibility for implementors. If an API supports checkpoint pagination, the specific
+     * deserializer implementation must override this method and construct the Page to populate the "next" field</strong>.
+     */
+    protected T createPage(Integer start, Integer length, Integer total, Integer limit, String next, List<U> items) {
+        return createPage(start, length, total, limit, items);
+    }
+
     private Integer getIntegerValue(JsonNode node) {
         if (node == null || node.isNull()) {
             return null;
         } else {
             return node.intValue();
+        }
+    }
+
+    private String getStringValue(JsonNode node) {
+        if (node == null || node.isNull()) {
+            return null;
+        } else {
+            return node.textValue();
         }
     }
 

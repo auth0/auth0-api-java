@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "email": "john.doe@gmail.com",
+      "user_id": "usr_5457edea1b8f33391a000004",
+      "picture": "",
+      "name": ""
+    },
+    {
+      "email": "john.doe2@gmail.com",
+      "user_id": "usr_5457edea1b8f33391a000004",
+      "picture": "",
+      "name": ""
+    }
+  ],
+  "next": "MjAyMS0wMy0yOSAxNjo1MDo09s44NDYxODcrMDAsb3JnX2Y0VXZUbG1iSWd2005zTGw"
+}

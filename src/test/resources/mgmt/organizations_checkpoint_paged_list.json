@@ -1,0 +1,25 @@
+{
+  "organizations": [
+    {
+      "id": "org_VSZmSnzd0m9ITBZ7",
+      "name": "org-1",
+      "display_name": "org 1",
+      "branding": {
+        "logo_uri": "https://some-url.com/",
+        "colors": {
+          "primary": "#FF0000",
+          "page_background": "#FF0000"
+        }
+      },
+      "metadata": {
+        "key1": "val1"
+      }
+    },
+    {
+      "id": "org_W3OH9wtMRbjhHuWK",
+      "name": "org-2",
+      "display_name": "org 2"
+    }
+  ],
+  "next": "MjAyMS0wMy0yOSAxNjo1MDo09s44NDYxODcrMDAsb3JnX2Y0VXZUbG1iSWd2005zTGw"
+}

@@ -23,4 +23,8 @@ public class MembersPage extends Page<Member> {
     public MembersPage(Integer start, Integer length, Integer total, Integer limit, List<Member> items) {
         super(start, length, total, limit, items);
     }
+
+    public MembersPage(Integer start, Integer length, Integer total, Integer limit, String next, List<Member> items) {
+        super(start, length, total, limit, next, items);
+    }
 }

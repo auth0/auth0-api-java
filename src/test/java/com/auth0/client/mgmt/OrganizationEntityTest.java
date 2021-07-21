@@ -59,6 +59,26 @@ public class OrganizationEntityTest extends BaseMgmtEntityTest {
     }
 
     @Test
+    public void shouldListOrgsWithCheckpointPagination() throws Exception {
+        PageFilter filter = new PageFilter().withTake(10).withFrom("from-id");
+        Request<OrganizationsPage> request = api.organizations().list(filter);
+        assertThat(request, is(notNullValue()));
+
+        server.jsonResponse(ORGANIZATIONS_CHECKPOINT_PAGED_LIST, 200);
+        OrganizationsPage response = request.execute();
+        RecordedRequest recordedRequest = server.takeRequest();
+
+        assertThat(recordedRequest, hasMethodAndPath("GET", "/api/v2/organizations"));
+        assertThat(recordedRequest, hasHeader("Content-Type", "application/json"));
+        assertThat(recordedRequest, hasHeader("Authorization", "Bearer apiToken"));
+        assertThat(recordedRequest, hasQueryParameter("take", "10"));
+        assertThat(recordedRequest, hasQueryParameter("from", "from-id"));
+
+        assertThat(response, is(notNullValue()));
+        assertThat(response.getItems(), hasSize(2));
+    }
+
+    @Test
     public void shouldListOrgsWithTotals() throws Exception {
         PageFilter filter = new PageFilter().withTotals(true);
         Request<OrganizationsPage> request = api.organizations().list(filter);
@@ -301,6 +321,26 @@ public class OrganizationEntityTest extends BaseMgmtEntityTest {
         assertThat(recordedRequest, hasHeader("Content-Type", "application/json"));
         assertThat(recordedRequest, hasHeader("Authorization", "Bearer apiToken"));
         assertThat(recordedRequest, hasQueryParameter("include_totals", "true"));
+
+        assertThat(response, is(notNullValue()));
+        assertThat(response.getItems(), hasSize(3));
+    }
+
+    @Test
+    public void shouldListOrgMembersWithCheckpointPageResponse() throws Exception {
+        PageFilter filter = new PageFilter().withTake(3).withFrom("from-pointer");
+        Request<MembersPage> request = api.organizations().getMembers("org_abc", filter);
+        assertThat(request, is(notNullValue()));
+
+        server.jsonResponse(ORGANIZATION_MEMBERS_CHECKPOINT_PAGED_LIST, 200);
+        MembersPage response = request.execute();
+        RecordedRequest recordedRequest = server.takeRequest();
+
+        assertThat(recordedRequest, hasMethodAndPath("GET", "/api/v2/organizations/org_abc/members"));
+        assertThat(recordedRequest, hasHeader("Content-Type", "application/json"));
+        assertThat(recordedRequest, hasHeader("Authorization", "Bearer apiToken"));
+        assertThat(recordedRequest, hasQueryParameter("take", "3"));
+        assertThat(recordedRequest, hasQueryParameter("from", "from-pointer"));
 
         assertThat(response, is(notNullValue()));
         assertThat(response.getItems(), hasSize(3));

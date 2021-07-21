@@ -29,4 +29,8 @@ class UsersPageDeserializer extends PageDeserializer<UsersPage, User> {
         return new UsersPage(start, length, total, limit, items);
     }
 
+    @Override
+    protected UsersPage createPage(Integer start, Integer length, Integer total, Integer limit, String next, List<User> items) {
+        return new UsersPage(start, length, total, limit, next, items);
+    }
 }

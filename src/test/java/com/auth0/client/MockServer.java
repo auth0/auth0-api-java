@@ -54,6 +54,7 @@ public class MockServer {
     public static final String MGMT_ROLE_PERMISSIONS_PAGED_LIST = "src/test/resources/mgmt/role_permissions_paged_list.json";
     public static final String MGMT_ROLE_USERS_LIST = "src/test/resources/mgmt/role_users_list.json";
     public static final String MGMT_ROLE_USERS_PAGED_LIST = "src/test/resources/mgmt/role_users_paged_list.json";
+    public static final String MGMT_ROLE_USERS_CHECKPOINT_PAGED_LIST = "src/test/resources/mgmt/role_users_checkpoint_paged_list.json";
     public static final String MGMT_RULES_LIST = "src/test/resources/mgmt/rules_list.json";
     public static final String MGMT_RULES_CONFIGS_LIST = "src/test/resources/mgmt/rules_configs_list.json";
     public static final String MGMT_RULES_PAGED_LIST = "src/test/resources/mgmt/rules_paged_list.json";
@@ -97,8 +98,10 @@ public class MockServer {
     public static final String ORGANIZATION = "src/test/resources/mgmt/organization.json";
     public static final String ORGANIZATIONS_LIST = "src/test/resources/mgmt/organizations_list.json";
     public static final String ORGANIZATIONS_PAGED_LIST = "src/test/resources/mgmt/organizations_paged_list.json";
+    public static final String ORGANIZATIONS_CHECKPOINT_PAGED_LIST = "src/test/resources/mgmt/organizations_checkpoint_paged_list.json";
     public static final String ORGANIZATION_MEMBERS_LIST = "src/test/resources/mgmt/organization_members_list.json";
     public static final String ORGANIZATION_MEMBERS_PAGED_LIST = "src/test/resources/mgmt/organization_members_paged_list.json";
+    public static final String ORGANIZATION_MEMBERS_CHECKPOINT_PAGED_LIST = "src/test/resources/mgmt/organization_members_checkpoint_paged_list.json";
     public static final String ORGANIZATION_CONNECTIONS_LIST = "src/test/resources/mgmt/organization_connections_list.json";
     public static final String ORGANIZATION_CONNECTIONS_PAGED_LIST = "src/test/resources/mgmt/organization_connections_paged_list.json";
     public static final String ORGANIZATION_CONNECTION = "src/test/resources/mgmt/organization_connection.json";
